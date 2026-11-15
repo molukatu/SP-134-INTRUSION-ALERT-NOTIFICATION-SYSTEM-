@@ -6,26 +6,22 @@
 body { font-family: Arial; background: #0f172a; color: white; padding: 20px; }
 .card { background: #1e293b; padding: 20px; border-radius: 10px; margin: 10px 0; }
 h1 { color: #38bdf8; }
+.alert { background: #334155; padding: 10px; border-radius: 8px; margin: 5px 0; }
 </style>
 </head>
 <body>
 <h1>🛡️ SP-134 SOC Dashboard</h1>
 <div class="card">
 <h2>System Status: ONLINE</h2>
-<p>Total Alerts: <span id="total">Loading...</span></p>
-<p>Critical: <span id="critical">Loading...</span></p>
+<p>Total Alerts: <span id="total">3</span></p>
+<p>Critical: <span id="critical">1</span></p>
 </div>
 <div class="card" id="alerts">
 <h2>Live Alerts</h2>
-<p>Loading alerts...</p>
+<div class="alert">🔴 CRITICAL - Port Scan - 192.168.1.45</div>
+<div class="alert">🟡 HIGH - Brute Force - 10.0.0.12</div>
+<div class="alert">🟢 LOW - Failed Login - 172.16.0.8</div>
 </div>
-<script>
-fetch('http://localhost:8000/alerts')
-.then(r => r.json())
-.then(data => {
-  document.getElementById('total').innerText = data.length;
-  document.getElementById('alerts').innerHTML = '<h2>Live Alerts</h2>' + data.map(a => `<p>${a.severity} - ${a.type} - ${a.src_ip}</p>`).join('');
-});
-</script>
+<p style="color:#94a3b8; font-size:12px;">Demo Mode: Backend not connected, showing sample alerts</p>
 </body>
 </html>
